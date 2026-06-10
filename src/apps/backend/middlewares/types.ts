@@ -8,7 +8,7 @@ export type AuthenticatedUser = {
 }
 
 export type AuthTokenPayload = {
- _id: string;
+  userId: string;
   name: string;
   email: string;
   role: UserRole;

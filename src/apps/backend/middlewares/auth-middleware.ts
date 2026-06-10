@@ -29,7 +29,8 @@ export const authMiddleware = async (
 
   try {
     const decoded = jwt.verify(token, jwtSecret) as AuthTokenPayload;
-    const user = await UserAuthenticationReader.getUserById(decoded._id);
+    const user = await UserAuthenticationReader.getUserById(decoded.userId);
+
     if (!user) {
       return res.status(401).json({
         success: false,
