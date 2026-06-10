@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from "express";
 import type { UserRole } from "../modules/users/types";
 import type { AuthenticatedRequest } from "./types";
 
-export const permissionMiddleware = (...allowedRoles: Array<UserRole>) => (
+export const PermissionMiddleware = (...allowedRoles: Array<UserRole>) => (
   req: Request,
   res: Response,
   next: NextFunction,

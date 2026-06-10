@@ -6,6 +6,7 @@ import express from "express";
 import connectDb from "./database/db";
 import cors from "cors";
 import authRouter from "./modules/users/rest-api/user-authentication-router";
+import taskRouter from "./modules/tasks/rest-api/user-task-router";
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ const __dirname = path.dirname(__filename);
 app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRouter);
-
+app.use("/api/tasks", taskRouter);
 
 const serverBoot = async () => {
   if (process.env.DBURL) {

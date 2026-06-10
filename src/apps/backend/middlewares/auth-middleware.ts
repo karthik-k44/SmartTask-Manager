@@ -3,7 +3,7 @@ import type { AuthenticatedRequest, AuthTokenPayload } from './types';
 import jwt from 'jsonwebtoken';
 import UserAuthenticationReader from '../modules/users/internal/user-authentication-reader';
 
-export const authMiddleware = async (
+export const AuthMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction,

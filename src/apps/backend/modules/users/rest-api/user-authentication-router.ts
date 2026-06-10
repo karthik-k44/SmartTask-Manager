@@ -1,11 +1,15 @@
 import express from "express";  
 import { UserAuthenticationController } from "./user-authentication-controller";
-import { authMiddleware } from "../../../middlewares/auth-middleware";
+import { AuthMiddleware } from "../../../middlewares/auth-middleware";
+import { PermissionMiddleware } from "../../../middlewares/permission-middleware";
+import { UserRole } from "../types";
 
 const router = express.Router();
 
 router.post("/signup", UserAuthenticationController.createUser);
 router.post("/login", UserAuthenticationController.loginUser);
-router.get("/current-user", authMiddleware, UserAuthenticationController.getCurrentUser);
+router.get("/current-user", AuthMiddleware, UserAuthenticationController.getCurrentUser);
+router.get("/users", AuthMiddleware, PermissionMiddleware(UserRole.ADMIN), UserAuthenticationController.getAllUsers);
+router.delete("/users/:id", AuthMiddleware, PermissionMiddleware(UserRole.ADMIN), UserAuthenticationController.deleteUserById);
 
 export default router;

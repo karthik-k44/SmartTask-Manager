@@ -55,7 +55,7 @@ export class UserAuthenticationServices {
     }
   }
 
-  public static getCurrentUser = async (userId: string) => {
+  public static getCurrentUser = async (userId: string): Promise<User> => {
     const user = await UserAuthenticationReader.getUserById(userId);
     if (!user) {
       throw new Error("User not found");
@@ -68,4 +68,22 @@ export class UserAuthenticationServices {
     };
   }
 
+  public static deleteUserById = async (userId: string): Promise<string> => {
+    const user = await UserAuthenticationReader.getUserById(userId);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    await UserAuthenticationWriter.deleteUser(userId);
+    return "User deleted successfully";
+  }
+
+  public static getAllUsers = async (): Promise<User[]> => {
+    const users = await UserAuthenticationReader.getAllUsers();
+    return users.map(user => ({
+      _id: String(user._id),
+      name: user.name,
+      email: user.email,
+      role: user.role as UserRole,
+    }));
+  }
 }

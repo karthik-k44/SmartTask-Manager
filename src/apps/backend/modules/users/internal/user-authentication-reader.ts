@@ -22,4 +22,15 @@ export default class UserAuthenticationReader {
       throw error;
     }
   }
+
+  public static getAllUsers = async () => {
+    try {
+      const users = await UserAuthenticationModel.find();
+      return users;
+    }
+    catch (error) {
+      console.log("Error while fetching all users", error);
+      throw error;
+    }
+  }
 }

@@ -12,4 +12,14 @@ export default class UserAuthenticationWriter {
       throw error;
     }
   }
+
+  public static deleteUser = async (userId: string) => {
+    try {
+      await UserAuthenticationModel.findByIdAndDelete(userId);
+    }
+    catch (error) {
+      console.log("Error while deleting user", error);
+      throw error;
+    }
+  }
 }

@@ -77,4 +77,38 @@ export class UserAuthenticationController {
     }
   };
 
+  public static deleteUserById = async (req: Request, res: Response) => {
+    try {
+      const userId = String(req.params.id).replace(/^:/, '');
+      const result = await UserAuthenticationServices.deleteUserById(userId);
+      return res.status(200).json({
+        success: true,
+        message: result,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Internal server error",
+        error: (error as Error).message,
+      });
+    }
+  }
+
+  public static getAllUsers = async (req: Request, res: Response) => {
+    try {
+      const users = await UserAuthenticationServices.getAllUsers();
+      return res.status(200).json({
+        success: true,
+        message: "Users fetched successfully",
+        data: users,
+      });
+    } catch (error) { 
+      return res.status(500).json({
+        success: false,
+        message: "Internal server error",
+        error: (error as Error).message,
+      });
+    }
+  }
+
 }
