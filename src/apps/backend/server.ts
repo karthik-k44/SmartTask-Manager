@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import express from "express";
 import connectDb from "./database/db";
 import cors from "cors";
+import authRouter from "./modules/users/rest-api/user-authentication-router";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(cors());
 app.use(express.json());
+app.use("/api/auth", authRouter);
 
 
 const serverBoot = async () => {
