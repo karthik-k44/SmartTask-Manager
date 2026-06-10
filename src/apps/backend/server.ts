@@ -1,0 +1,65 @@
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import dotenv from "dotenv";
+import express from "express";
+import connectDb from "./database/db";
+import cors from "cors";
+
+dotenv.config();
+
+const app = express();
+const port = Number(process.env.PORT) || 3000;
+const isProd = process.env.NODE_ENV === "production";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(cors());
+app.use(express.json());
+
+
+const serverBoot = async () => {
+  if (process.env.DBURL) {
+    await connectDb();
+  } else {
+    console.warn("DBURL is not set starting server without database connection.");
+  }
+
+  if (isProd) {
+    const distPath = path.resolve(__dirname, "../../../dist");
+    const indexPath = path.join(distPath, "index.html");
+
+    if (fs.existsSync(indexPath)) {
+      app.use(express.static(distPath));
+      app.get("*", (_req, res) => {
+        res.sendFile(indexPath);
+      });
+    } else {
+      console.warn("dist/index.html not found. Serving API-only mode in production.");
+    }
+  } else {
+    const { createServer } = await import("vite");
+    const vite = await createServer({
+      server: {
+        middlewareMode: true,
+      },
+      appType: "spa",
+    });
+    app.use(vite.middlewares);
+  }
+
+  app.get('/health', (_req, res) => {
+    res.json({ ok: true });
+  });
+
+  app.listen(port, () => {
+    console.log(`[server] listening on http://localhost:${port}`);
+  });
+}
+
+serverBoot().catch((error) => {
+  console.error("Failed to start server:", error);
+  process.exit(1);
+});
+
