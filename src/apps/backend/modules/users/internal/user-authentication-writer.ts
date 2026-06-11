@@ -1,4 +1,4 @@
-import type { CreateUserParams } from "../types";
+import type { CreateUserParams, UserStatus } from "../types";
 import { UserAuthenticationModel } from "./user-authentication-schema";
 
 export default class UserAuthenticationWriter {
@@ -22,4 +22,15 @@ export default class UserAuthenticationWriter {
       throw error;
     }
   }
+
+  public static updateUserStatus = async (userId: string, status: UserStatus) => {
+    try {
+      await UserAuthenticationModel.findByIdAndUpdate(userId, { userStatus: status });
+    }
+    catch (error) {
+      console.log("Error while updating user status", error);
+      throw error;
+    }
+  }
+
 }

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import type { CreateUserParams, LoginParams, LoginResponse, User } from "../../../types";
 import { UserAuthenticationService } from "../../../services";
+import type { UserStatus } from "../../../types/user-authentication";
 
 const CreateUser = createAsyncThunk(
   'CreateUser',
@@ -27,10 +28,17 @@ const GetUserById = createAsyncThunk(
     async (): Promise<User> => UserAuthenticationService.getUserById()
 )
 
+const UpdateUserStatus = createAsyncThunk(
+  'UpdateUserStatus',
+  async ({ userId, status }: { userId: string, status: UserStatus }): Promise<string> => UserAuthenticationService.updateUserStatus(userId, status)
+)
+
+
 export {
   CreateUser,
   GetAllUsers,
   LoginUser,
   DeleteUserByAdmin,
-  GetUserById
+  GetUserById,
+  UpdateUserStatus
 }

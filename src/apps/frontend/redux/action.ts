@@ -1,5 +1,5 @@
 import { CreateUserTask, GetUserTasks, UpdateUserTask, DeleteUserTask } from "./reducer/user-tasks/action";
-import { CreateUser, GetAllUsers, GetUserById, DeleteUserByAdmin, LoginUser } from "./reducer/user-authentication/action";
+import { CreateUser, GetAllUsers, GetUserById, DeleteUserByAdmin, LoginUser, UpdateUserStatus } from "./reducer/user-authentication/action";
 
 export {
   CreateUserTask,
@@ -10,5 +10,6 @@ export {
   CreateUser,
   LoginUser,
   DeleteUserByAdmin,
-  GetUserById
+  GetUserById,
+  UpdateUserStatus
 }

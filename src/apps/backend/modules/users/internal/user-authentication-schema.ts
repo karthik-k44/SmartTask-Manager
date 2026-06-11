@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { UserRole } from "../types";
+import { UserRole, UserStatus } from "../types";
 
 export const createUserAuthenticationSchema = new mongoose.Schema({
   name:{
@@ -18,6 +18,11 @@ export const createUserAuthenticationSchema = new mongoose.Schema({
   password:{
     type:String,
     required:true
+  },
+  userStatus:{
+    type:String,
+    enum:UserStatus,
+    default:UserStatus.ACTIVE
   },
   role:{
     type:String,

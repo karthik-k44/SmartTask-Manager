@@ -1,4 +1,5 @@
 import type { CreateUserParams, LoginParams, LoginResponse, User } from "../types";
+import type { UserStatus } from "../types/user-authentication";
 import APIService from "./api.service";
 import CommonService from "./common.service";
 
@@ -82,4 +83,14 @@ export class UserAuthenticationService extends APIService {
       throw CommonService.toReadableError(error);
     }
   }
+
+  public static updateUserStatus = async (userId: string, status: UserStatus): Promise<string> => {
+    try{
+      const response = await this.instance.apiClient.patch(`/auth/user-status/${userId}`, { status });
+      return response.data?.message || "User status updated successfully";
+    } catch (error) {
+      throw CommonService.toReadableError(error);
+    }
+  }
+      
 }

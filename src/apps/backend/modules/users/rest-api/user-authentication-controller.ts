@@ -1,5 +1,5 @@
 import type { AuthenticatedRequest } from "../../../middlewares/types";
-import type { CreateUserParams, LoginParams } from "../types";
+import { UserStatus, type CreateUserParams, type LoginParams } from "../types";
 import { UserAuthenticationServices } from "../user-authentication-services";
 import type { Request, Response } from "express";
 
@@ -111,4 +111,46 @@ export class UserAuthenticationController {
     }
   }
 
+  public static updateUserStatus = async (req: Request, res: Response) => {
+    try {
+      const userId = String(req.params.id).replace(/^:/, '');
+      const statusInput = req.body.status;
+      const allowedStatuses = Object.values(UserStatus);
+      
+      if (typeof statusInput !== "string" || !allowedStatuses.includes(statusInput as UserStatus)) {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid status value",
+        });
+      }
+      
+      const status = statusInput as UserStatus;
+      const result = await UserAuthenticationServices.updateUserStatus(userId, status);
+      return res.status(200).json({
+        success: true,
+        message: result,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Internal server error",
+        error: (error as Error).message,
+      });
+    }
+  };
+
+  public static HealthCheck = async (_req: Request, res: Response) => {
+    try {
+      return res.status(200).json({
+        success: true,
+        message: "ok",
+      });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Internal server error",
+        error: (error as Error).message,
+      });
+    }
+  };
 }

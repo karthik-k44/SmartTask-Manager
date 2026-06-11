@@ -1,7 +1,7 @@
 import generateAuthToken from "../utils/auth-token-utils";
 import UserAuthenticationReader from "./internal/user-authentication-reader";
 import UserAuthenticationWriter from "./internal/user-authentication-writer";
-import { UserRole, type CreateUserParams, type LoginParams, type LoginResponse, type User } from "./types";
+import { UserRole, UserStatus, type CreateUserParams, type LoginParams, type LoginResponse, type User } from "./types";
 import bcrypt from 'bcrypt';
 
 export class UserAuthenticationServices {
@@ -26,6 +26,7 @@ export class UserAuthenticationServices {
       email: String(user.email),
       role: user.role || UserRole.USER,
       authToken: token,
+      userStatus: user.userStatus || UserStatus.ACTIVE,
     };
   }
 
@@ -46,6 +47,7 @@ export class UserAuthenticationServices {
       name: user.name,
       email: user.email,
       role: user.role as UserRole,
+      userStatus: user.userStatus as UserStatus,
     };
 
     const token = generateAuthToken(userForToken);
@@ -66,6 +68,7 @@ export class UserAuthenticationServices {
       name: user.name,
       email: user.email,
       role: user.role as UserRole,
+      userStatus: user.userStatus as UserStatus,
     };
   }
 
@@ -85,6 +88,12 @@ export class UserAuthenticationServices {
       name: user.name,
       email: user.email,
       role: user.role as UserRole,
+      userStatus: user.userStatus as UserStatus,
     }));
+  }
+
+  public static updateUserStatus = async (userId: string, status: UserStatus): Promise<String> => {
+    await UserAuthenticationWriter.updateUserStatus(userId, status);
+    return "User status updated successfully";
   }
 }
