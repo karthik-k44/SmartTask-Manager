@@ -1,7 +1,16 @@
+import { Spinner } from "../../components";
 import { useAppSelector } from "../../redux/hook";
 
 const UserPage = () => {
-  const getUserByIdData = useAppSelector((state) => state.authUser.getUserByIdData);
+  const { getUserByIdData, getUserByIdLoading } = useAppSelector((state) => state.authUser);
+
+  if(getUserByIdLoading){
+    return (
+      <div className="flex h-[50vh] items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <div className="rounded-3xl bg-white shadow-sm shadow-slate-200/40">

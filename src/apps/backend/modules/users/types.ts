@@ -15,6 +15,7 @@ export type User = {
   name: string;
   email: string;
   role: UserRole;
+  userStatus?: UserStatus;
   authToken?: string;
 };
 
@@ -28,3 +29,8 @@ export type LoginResponse = {
   _id: string;
   role?: UserRole;
 };
+
+export enum UserStatus {
+  ACTIVE = "active",
+  INACTIVE = "inactive"
+}

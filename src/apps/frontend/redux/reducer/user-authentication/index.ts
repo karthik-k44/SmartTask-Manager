@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialUserAuthState } from "./initial-value";
-import { CreateUser, LoginUser, DeleteUserByAdmin, GetAllUsers, GetUserById} from "./action";
+import { CreateUser, LoginUser, DeleteUserByAdmin, GetAllUsers, GetUserById, UpdateUserStatus} from "./action";
 
 
 const  authSlice = createSlice({
@@ -90,6 +90,23 @@ const  authSlice = createSlice({
     builder.addCase(GetUserById.rejected, (state, action) => {
       state.getUserByIdLoading = false
       state.getUserByIdError = {
+        code: action.error.code || "",
+        message: action.error.message || "",
+      }
+    })
+
+    builder.addCase(UpdateUserStatus.pending, (state) => {
+      state.updateUserStatusLoading = true;
+    })
+
+    builder.addCase(UpdateUserStatus.fulfilled, (state) => {
+      state.updateUserStatusLoading = false;
+      state.updateUserStatusSuccess = true;
+    })
+
+    builder.addCase(UpdateUserStatus.rejected, (state, action) => {
+      state.updateUserStatusLoading = false;
+      state.updateUserStatusError = {
         code: action.error.code || "",
         message: action.error.message || "",
       }

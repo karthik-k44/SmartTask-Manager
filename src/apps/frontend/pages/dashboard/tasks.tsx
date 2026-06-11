@@ -6,7 +6,7 @@ import Button from '../../components/button';
 import { ButtonKind, ButtonType } from '../../types/button';
 import TaskCard from '../../components/task-card';
 import CreateAndUpdateTaskForm from './task-creation/create-update-task-form';
-import { DeletionPopup } from '../../components';
+import { DeletionPopup, Spinner } from '../../components';
 import toast from 'react-hot-toast';
 import type { UserTaskResponse } from '../../types';
 
@@ -17,7 +17,7 @@ const Tasks = () => {
   const [deletionId, setDeletionId] = useState('');
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<UserTaskResponse | undefined>(undefined);
-  const getUserTaskData = useAppSelector((state) => state.userTask.getUserTaskData);
+  const { getUserTaskData, getUserTasksLoading } = useAppSelector((state) => state.userTask);
 
 
   useEffect(() => {
@@ -43,6 +43,15 @@ const Tasks = () => {
       toast.error(errorMessage);
     }
   };
+
+   if (getUserTasksLoading) 
+   {
+    return (
+      <div className="flex h-[50vh] items-center justify-center">
+        <Spinner />
+      </div>
+    );
+   }
 
   return (
     <div>

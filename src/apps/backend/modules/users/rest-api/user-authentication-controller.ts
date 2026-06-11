@@ -111,4 +111,21 @@ export class UserAuthenticationController {
     }
   }
 
+  public static updateUserStatus = async (req: Request, res: Response) => {
+    try {
+      const userId = String(req.params.id).replace(/^:/, '');
+      const status = req.body.status;
+      const result = await UserAuthenticationServices.updateUserStatus(userId, status);
+      return res.status(200).json({
+        success: true,
+        message: result,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Internal server error",
+        error: (error as Error).message,
+      });
+    }
+  }
 }

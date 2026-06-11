@@ -24,6 +24,7 @@ export type User = {
   email: string;
   role: UserRole;
   authToken?: string;
+  userStatus?: UserStatus;
 };
 
 export type LoginParams = {
@@ -52,3 +53,8 @@ export const UserRoleType : DropDownOption[] = [
     value: UserRole.ADMIN,
   }
 ]
+
+export enum UserStatus {
+  ACTIVE = "active",
+  INACTIVE = "inactive"
+}
