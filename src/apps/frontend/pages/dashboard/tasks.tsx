@@ -8,7 +8,6 @@ import TaskCard from '../../components/task-card';
 import CreateAndUpdateTaskForm from './task-creation/create-update-task-form';
 import { DeletionPopup } from '../../components';
 import toast from 'react-hot-toast';
-import { GetAllTasks } from '../../redux/reducer/user-tasks/action';
 import type { UserTaskResponse } from '../../types';
 
 
