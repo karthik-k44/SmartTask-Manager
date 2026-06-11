@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import Select from "../../../components/select";
 import { TaskStatus } from "../../../types/user-tasks";
 import type { UserTaskResponse } from "../../../types";
+import { useAppSelector } from "../../../redux/hook";
 
 interface CreateAndUpdateTaskFormProps {
   isOpen: boolean;
@@ -33,6 +34,9 @@ const CreateAndUpdateTaskForm: React.FC<CreateAndUpdateTaskFormProps> = ({
   ).getUserByIdData;
 
   const userId = currentUser?._id || "";
+
+  const { createUserTaskLoading, updateUserTaskLoading } = useAppSelector((state) => state.userTask);
+
 
   const { formik } = CreateAndUpdateTaskFormHook({
     task,
@@ -102,11 +106,11 @@ const CreateAndUpdateTaskForm: React.FC<CreateAndUpdateTaskFormProps> = ({
             isLoading={false}
           />
         </FormControl>
-        
+
         <FormControl
           error={
             formik.errors.taskDueDate && formik.touched.taskDueDate
-              ? formik.errors.taskDueDate as string
+              ? (formik.errors.taskDueDate as string)
               : ""
           }
           label="Due Date"
@@ -127,6 +131,7 @@ const CreateAndUpdateTaskForm: React.FC<CreateAndUpdateTaskFormProps> = ({
           <Button
             kind={ButtonKind.PRIMARY}
             type={ButtonType.SUBMIT}
+            isLoading={isUpdating ? updateUserTaskLoading : createUserTaskLoading}
           >
             {isUpdating ? "Update Task" : "Create Task"}
           </Button>

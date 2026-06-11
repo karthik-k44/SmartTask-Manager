@@ -1,6 +1,7 @@
 import React from 'react'
 
 export interface TaskDashboardSummary {
+  totalUsers: number
   total: number
   pending: number
   inProgress: number
@@ -14,9 +15,9 @@ interface TaskDashboardProps {
 }
 
 const statCards = [
+  { label: 'Total users', key: 'totalUsers' as const },
   { label: 'Total tasks', key: 'total' as const },
   { label: 'Pending', key: 'pending' as const },
-  { label: 'In progress', key: 'inProgress' as const },
   { label: 'Completed', key: 'completed' as const },
 ]
 

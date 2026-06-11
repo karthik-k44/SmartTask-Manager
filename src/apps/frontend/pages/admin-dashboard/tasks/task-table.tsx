@@ -1,12 +1,15 @@
 import React from 'react'
 import type { User, UserTaskResponse } from '../../../types'
 import type { TaskStatus } from '../../../types/user-tasks'
+import { Trash2 } from 'lucide-react'
 
 interface TaskTableProps {
   tasks: UserTaskResponse[]
   usersById?: Record<string, User>
   noDataTitle?: string
   noDataMessage?: string
+  setDeletionTaskId?: (taskId: string) => void
+  setDeleteModalOpen?: (isOpen: boolean) => void
 }
 
 const statusStyles: Record<TaskStatus, string> = {
@@ -22,7 +25,13 @@ const TaskTable: React.FC<TaskTableProps> = ({
   usersById,
   noDataTitle = 'No tasks available',
   noDataMessage = 'All tasks will appear here once the data is loaded.',
+  setDeletionTaskId,
+  setDeleteModalOpen,
 }) => {
+  const onDeleteTask = (taskId: string) => {
+    setDeletionTaskId?.(taskId)
+    setDeleteModalOpen?.(true)
+  }
   return (
     <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm shadow-slate-200/30">
       {tasks.length ? (
@@ -35,31 +44,54 @@ const TaskTable: React.FC<TaskTableProps> = ({
                 <th className="px-6 py-4 font-medium text-slate-600">Owner</th>
                 <th className="px-6 py-4 font-medium text-slate-600">Email</th>
                 <th className="px-6 py-4 font-medium text-slate-600">Due date</th>
+                <th className="px-6 py-4 font-medium text-slate-600 text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
               {tasks.map((task) => {
                 const owner = usersById?.[task.userId]
                 return (
-                  <tr key={task.taskId} className="border-t border-slate-200 hover:bg-slate-50">
+                  <tr
+                    key={task.taskId}
+                    className="border-t border-slate-200 hover:bg-slate-50"
+                  >
                     <td className="px-6 py-5 align-top">
-                      <div className="font-semibold text-slate-900">{task.taskName}</div>
-                      <div className="mt-2 text-sm text-slate-600">{task.taskDescription}</div>
+                      <div className="font-semibold text-slate-900">
+                        {task.taskName}
+                      </div>
+                      <div className="mt-2 text-sm text-slate-600">
+                        {task.taskDescription}
+                      </div>
                     </td>
                     <td className="px-6 py-5 align-top">
                       <span
-                        className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] ${statusStyles[task.taskStatus]}`}
+                        className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] ${
+                          statusStyles[task.taskStatus]
+                        }`}
                       >
                         {formatStatus(task.taskStatus)}
                       </span>
                     </td>
-                    <td className="px-6 py-5 align-top text-slate-900">{owner?.name ?? 'Unknown'}</td>
-                    <td className="px-6 py-5 align-top text-slate-600">{owner?.email ?? 'Unknown'}</td>
+                    <td className="px-6 py-5 align-top text-slate-900">
+                      {owner?.name ?? "Unknown"}
+                    </td>
+                    <td className="px-6 py-5 align-top text-slate-600">
+                      {owner?.email ?? "Unknown"}
+                    </td>
                     <td className="px-6 py-5 align-top text-slate-900">
                       {new Date(task.taskDueDate).toLocaleDateString()}
                     </td>
+                    <td className="px-6 py-5 align-top text-right">
+                      <button
+                        type="button"
+                        onClick={() => onDeleteTask(task.taskId)}
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-rose-600 hover:bg-rose-50 focus:outline-none transition-colors cursor-pointer"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </td>
                   </tr>
-                )
+                );
               })}
             </tbody>
           </table>
