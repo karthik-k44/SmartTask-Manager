@@ -8,5 +8,6 @@ router.post('/', AuthMiddleware, UserTaskController.createUserTask);
 router.delete('/:id', AuthMiddleware, UserTaskController.deleteUserTask);
 router.put('/:id', AuthMiddleware, UserTaskController.updateUserTask);
 router.get('/', AuthMiddleware, UserTaskController.getUserTasks);
+router.get('/:id', AuthMiddleware, UserTaskController.getUserTaskById);
 
 export default router;

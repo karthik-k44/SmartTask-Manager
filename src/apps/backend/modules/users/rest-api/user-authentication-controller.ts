@@ -94,7 +94,7 @@ export class UserAuthenticationController {
     }
   }
 
-  public static getAllUsers = async (req: Request, res: Response) => {
+  public static getAllUsers = async (_req: Request, res: Response) => {
     try {
       const users = await UserAuthenticationServices.getAllUsers();
       return res.status(200).json({
