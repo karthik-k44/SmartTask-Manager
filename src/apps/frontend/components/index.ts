@@ -5,7 +5,7 @@ import Spinner from "./spinner";
 import FormControl from "./form-control";
 import Button from "./button";
 import Input from "./input";
-
+import DeletionPopup from "./delete-popup";
 
 export {
     Text,
@@ -15,4 +15,5 @@ export {
     FormControl,
     Button,
     Input,
+    DeletionPopup
  }

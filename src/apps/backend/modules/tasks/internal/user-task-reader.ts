@@ -10,4 +10,15 @@ export class UserTaskReader {
       throw new Error("Failed to fetch user tasks");
     }
   };
+
+  public static getAllUserTasks = async () => {
+    try {
+      const tasks = await UserTaskModel.find();
+      return tasks; 
+    }
+    catch (error) {
+       console.log("Error fetching user tasks:", error);
+      throw new Error("Failed to fetch user tasks");
+    }
+  }
 }

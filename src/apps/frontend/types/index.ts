@@ -25,7 +25,5 @@ export  {
 } from "./button";
 
 export type {
-  NavbarItemsEnum,
-  NavType,
   NavbarItem,
 } from "./navbar";

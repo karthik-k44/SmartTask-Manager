@@ -22,9 +22,9 @@ const DeleteUserTask = createAsyncThunk(
   async (id: string): Promise<String> => UserTaskService.deleteUserTask(id)
 )
 
-const GetUserTaskById = createAsyncThunk(
-  'GetUserTaskById',
-  async (id: string): Promise<UserTaskResponse> => UserTaskService.getUserTaskById(id)
+const GetAllTasks = createAsyncThunk(
+  'GetAllTasks',
+  async (): Promise<UserTaskResponse[]> => UserTaskService.getAllTasks()
 )
 
 export {
@@ -32,5 +32,5 @@ export {
   GetUserTasks,
   UpdateUserTask,
   DeleteUserTask,
-  GetUserTaskById
+  GetAllTasks
 }

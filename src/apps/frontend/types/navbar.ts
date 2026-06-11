@@ -12,13 +12,7 @@ export type NavbarItem ={
 
 export enum NavbarItemsEnum {
     HOME = 'HOME',
-    FEATURES = 'FEATURES',
-    ABOUT = 'ABOUT',
-    CONTACT = 'CONTACT',
-    DASHBOARD = 'DASHBOARD',
-    PROFILE = 'PROFILE',
-    SETTINGS = 'SETTINGS',
-    RESUME_BUILDER = 'RESUME_BUILDER',
-    AI_ANALYZER = 'AI_ANALYZER',
-    
+    TASKS = 'TASKS',
+    USERS = 'USERS',
+    TASKS_OVERVIEW = 'TASKS_OVERVIEW',
 }

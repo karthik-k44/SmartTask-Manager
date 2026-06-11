@@ -76,8 +76,8 @@ export class UserAuthenticationService extends APIService {
 
   public static getAllUsers = async (): Promise<User[]> => {
     try {
-      const response = await this.instance.apiClient.get<User[]>("/auth/users");
-      return response.data;
+      const response = await this.instance.apiClient.get("/auth/users");
+      return response.data?.data as User[];
     } catch (error) {
       throw CommonService.toReadableError(error);
     }

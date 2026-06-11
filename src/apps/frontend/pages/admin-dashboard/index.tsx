@@ -1,36 +1,41 @@
+import { useNavigate } from "react-router-dom";
+import { NavbarItemsEnum, NavType } from "../../types/navbar";
+import { useState } from "react";
+import { ROUTES } from "../../routes/types";
+import { AdminNavbar } from "../../constants/navbar";
+import { Navbar } from "../../components";
+import Users from "./users";
+import TasksOverview from "./tasks-overview";
+
 const AdminDashboard = () => {
+  const navigate = useNavigate();
+  const [isActiveNavItem, setIsActiveNavItem] = useState<NavbarItemsEnum>(
+    NavbarItemsEnum.USERS,
+  );
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userId");
+    navigate(ROUTES.LANDING);
+  };
+
+  const handleNavChange = (item: NavbarItemsEnum) => {
+    setIsActiveNavItem(item);
+  };
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="mx-auto max-w-6xl rounded-3xl bg-white p-8 shadow-md">
-        <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-        <p className="mt-3 text-gray-600">
-          This page is protected and only accessible to users with admin privileges.
-        </p>
-
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="rounded-3xl border border-gray-200 bg-gray-50 p-6">
-            <h2 className="text-xl font-semibold text-gray-900">User Management</h2>
-            <p className="mt-2 text-sm text-gray-600">
-              View all users, update roles, or delete users from the application.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-gray-200 bg-gray-50 p-6">
-            <h2 className="text-xl font-semibold text-gray-900">System Analytics</h2>
-            <p className="mt-2 text-sm text-gray-600">
-              Monitor task activity, access logs, and admin-only statistics.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-gray-200 bg-gray-50 p-6">
-            <h2 className="text-xl font-semibold text-gray-900">Admin Actions</h2>
-            <p className="mt-2 text-sm text-gray-600">
-              Create or remove users and manage application permissions securely.
-            </p>
-          </div>
-        </div>
+    <>
+      <Navbar
+        navType={NavType.ADMIN}
+        onLoginClick={handleLogout}
+        navbarItems={AdminNavbar}
+        setIsActiveNavItem={handleNavChange}
+        isActiveNavItem={isActiveNavItem}
+      />
+      <div className="pt-20 pb-60  px-4 md:pb-20 md:px-6 lg:px-8">
+        {isActiveNavItem === NavbarItemsEnum.USERS && <Users />}
+        {isActiveNavItem === NavbarItemsEnum.TASKS_OVERVIEW && <TasksOverview/>}
       </div>
-    </div>
+    </>
   );
 };
 

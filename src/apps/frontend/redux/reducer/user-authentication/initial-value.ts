@@ -15,7 +15,7 @@ export type UserAuthSliceType = {
   getAllUsersSuccess: User[];
   getUserByIdLoading: boolean;
   getUserByIdError: AsyncError;
-  getUserByIdSuccess: User;
+  getUserByIdData: User;
 }
 
 export const initialUserAuthState: UserAuthSliceType = {
@@ -33,5 +33,5 @@ export const initialUserAuthState: UserAuthSliceType = {
   getAllUsersSuccess: [],
   getUserByIdLoading: false,
   getUserByIdError: { code: "", message: "" },
-  getUserByIdSuccess: {} as User,
+  getUserByIdData: {} as User,
 }

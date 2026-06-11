@@ -66,4 +66,21 @@ export class UserTaskServices {
       throw new Error("Failed to fetch user tasks");
     }
   }
+
+  public static getAllUserTasks = async (): Promise<UserTaskResponse[]> => {
+   try {
+      const tasks = await UserTaskReader.getAllUserTasks();
+      return tasks.map((task) => ({
+        userId: task.userId.toString(),
+        taskId: task._id.toString(),
+        taskName: task.taskName,
+        taskDescription: task.taskDescription,
+        taskStatus: task.taskStatus,
+        taskDueDate: task.taskDueDate as Date,
+      }));
+    } catch (error) {
+      console.log("Error fetching tasks:", error);
+      throw new Error("Failed to fetch user tasks");
+    }
+  }
 }
