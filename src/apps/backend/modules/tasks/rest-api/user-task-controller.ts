@@ -58,4 +58,18 @@ export class UserTaskController {
       return res.status(500).json({ message: error.message });
     }
   };
+
+  public static getUserTaskById = async (req: Request, res: Response) => {
+    try{
+      const userId  = String(req.params.id).replace(/^:/, '');
+      if(!userId)
+      {
+        return res.status(401).json({ success: false, message: "User id not provided" });
+      }
+      const tasks = await UserTaskServices.getUserTasks(userId);
+      return res.status(200).json(tasks);
+    } catch (error: any) {
+      return res.status(500).json({ message: error.message });
+    }
+  }
 }
