@@ -7,6 +7,7 @@ import connectDb from "./database/db";
 import cors from "cors";
 import authRouter from "./modules/users/rest-api/user-authentication-router";
 import taskRouter from "./modules/tasks/rest-api/user-task-router";
+import rateLimit from "express-rate-limit";
 
 dotenv.config();
 
@@ -19,6 +20,14 @@ const __dirname = path.dirname(__filename);
 
 app.use(cors());
 app.use(express.json());
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, 
+  max: 100, 
+  message: { success: false, message: "Too many requests from this IP, please try again after 15 minutes" },
+});
+app.use("/api", apiLimiter);
+
 app.use("/api/auth", authRouter);
 app.use("/api/tasks", taskRouter);
 
@@ -65,4 +74,3 @@ serverBoot().catch((error) => {
   console.error("Failed to start server:", error);
   process.exit(1);
 });
-
