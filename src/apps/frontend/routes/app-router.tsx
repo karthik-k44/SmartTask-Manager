@@ -1,0 +1,24 @@
+import { Route, Routes } from "react-router-dom"
+import PublicRoute from "./public-routes"
+import { ROUTES } from "./types"
+import LandingPage from "../pages/landing-page";
+import ProtectedRoute from "./protected-routes";
+import PortalPage from "../pages/dashboard";
+
+
+
+const  AppRouter = () =>{
+  return (
+    <Routes>
+      <Route element={<PublicRoute />}>
+        <Route path={ROUTES.LANDING} element={<LandingPage />} />
+      </Route>
+
+      <Route element={<ProtectedRoute />}>
+        <Route path={ROUTES.PORTAL} element={<PortalPage />} />
+      </Route>
+    </Routes>
+  );
+}
+
+export default AppRouter
