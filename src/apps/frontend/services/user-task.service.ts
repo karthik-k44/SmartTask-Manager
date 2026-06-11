@@ -41,9 +41,9 @@ export class UserTaskService extends APIService {
     }
   }
 
-  public static getUserTaskById = async (id: string): Promise<UserTaskResponse> => {
+  public static getAllTasks = async (): Promise<UserTaskResponse[]> => {
     try {
-      const response = await this.instance.apiClient.get<UserTaskResponse>(`/tasks/${id}`);
+      const response = await this.instance.apiClient.get<UserTaskResponse[]>(`/tasks/all`);
       return response.data;
     } catch (error) {
       throw CommonService.toReadableError(error);

@@ -9,14 +9,12 @@ export type {
   LoginParams,
   LoginResponse,
   ApiResponse,
-  UserRole
 } from "./user-authentication";
 
 export type {
   CreateUserTaskParams,
   UpdateUserTaskParams,
   UserTaskResponse,
-  TaskStatus
 } from "./user-tasks";
 
 export  {
@@ -26,7 +24,5 @@ export  {
 } from "./button";
 
 export type {
-  NavbarItemsEnum,
-  NavType,
   NavbarItem,
 } from "./navbar";

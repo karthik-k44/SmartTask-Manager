@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialUserTaskState } from "./initial-value";
-import { CreateUserTask, DeleteUserTask, GetUserTaskById, GetUserTasks, UpdateUserTask } from "./action";
+import { CreateUserTask, DeleteUserTask, GetAllTasks, GetUserTasks, UpdateUserTask } from "./action";
 
 const userTaskSlice = createSlice({
   name: "userTasks",
@@ -9,85 +9,85 @@ const userTaskSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(CreateUserTask.pending, (state) => {
-      state.CreateUserTaskLoading = true;
+      state.createUserTaskLoading = true;
     })
 
     builder.addCase(CreateUserTask.fulfilled, (state, action) => {
-      state.CreateUserTaskLoading = false;
-      state.CreateUserTaskSuccess = action.payload;
+      state.createUserTaskLoading = false;
+      state.createUserTaskData = action.payload;
     })
 
     builder.addCase(CreateUserTask.rejected, (state, action) => {
-      state.CreateUserTaskLoading = false;
-      state.CreateUserTaskError = {
+      state.createUserTaskLoading = false;
+      state.createUserTaskError = {
         code: action.error.code || "",
         message: action.error.message || "",
       }
     })
   
     builder.addCase(UpdateUserTask.pending, (state) => {
-      state.UpdateUserTaskLoading = true;
+      state.updateUserTaskLoading = true;
     })
   
     builder.addCase(UpdateUserTask.fulfilled, (state, action) => {
-      state.UpdateUserTaskLoading = false;
-      state.UpdateUserTaskSuccess = action.payload;
+      state.updateUserTaskLoading = false;
+      state.updateUserTaskData = action.payload;
     })
 
     builder.addCase(UpdateUserTask.rejected, (state, action) => {
-      state.UpdateUserTaskLoading = false
-      state.UpdateUserTaskError = {
+      state.updateUserTaskLoading = false
+      state.updateUserTaskError = {
         code: action.error.code || "",
         message: action.error.message || "",
       }
     })
 
     builder.addCase(GetUserTasks.pending, (state) => {
-      state.GetUserTasksLoading = true;
+      state.getUserTasksLoading = true;
     })
 
     builder.addCase(GetUserTasks.fulfilled, (state, action) => {
-      state.GetUserTasksLoading = false;
-      state.GetUserTasksSuccess = action.payload;
+      state.getUserTasksLoading = false;
+      state.getUserTaskData = action.payload;
     })
 
     builder.addCase(GetUserTasks.rejected, (state, action) => {
-      state.GetUserTasksLoading = false
-      state.GetUserTasksError= {
+      state.getUserTasksLoading = false
+      state.getUserTasksError= {
         code: action.error.code || "",
         message: action.error.message || "",
       }
     })
 
-    builder.addCase(GetUserTaskById.pending, (state) => {
-      state.GetUserTaskByIdLoading = true;
+    builder.addCase(GetAllTasks.pending, (state) => {
+      state.getAllTasksLoading = true;
     })  
 
-    builder.addCase(GetUserTaskById.fulfilled, (state, action) => {
-      state.GetUserTaskByIdLoading = false;
-      state.GetUserTaskByIdSuccess = [action.payload];
+    builder.addCase(GetAllTasks.fulfilled, (state, action) => {
+      state.getAllTasksLoading = false;
+      state.getAllTasksData = action.payload;
     })
 
-    builder.addCase(GetUserTaskById.rejected, (state, action) => {
-      state.GetUserTaskByIdLoading = false
-      state.GetUserTaskByIdError= {
+    builder.addCase(GetAllTasks.rejected, (state, action) => {
+      state.getAllTasksLoading = false
+      state.getAllTasksError= {
         code: action.error.code || "",
         message: action.error.message || "",
       }
     })
 
     builder.addCase(DeleteUserTask.pending, (state) => {
-      state.DeleteUserTaskLoading = true;
+      state.deleteUserTaskLoading = true;
     })
 
     builder.addCase(DeleteUserTask.fulfilled, (state, action) => {
-      state.DeleteUserTaskLoading = false;
-      state.DeleteUserTaskSuccess = action.payload;
+      state.deleteUserTaskLoading = false;
+      state.deleteUserTaskData = action.payload;
     })
 
     builder.addCase(DeleteUserTask.rejected, (state, action) => {
-      state.DeleteUserTaskLoading = false
-      state.DeleteUserTaskError= {
+      state.deleteUserTaskLoading = false
+      state.deleteUserTaskError= {
         code: action.error.code || "",
         message: action.error.message || "",
       }

@@ -5,10 +5,9 @@ import { LogIn, LogOut, Menu, X } from "lucide-react";
 import Text from "../typography/text";
 import Button from "../button";
 import type {
-  NavType,
    NavbarItem,
-   NavbarItemsEnum,
 } from "../../types";
+import type { NavbarItemsEnum, NavType } from "../../types/navbar";
 
 interface NavbarProps {
   navType: NavType;
@@ -42,7 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({
               <h1
                 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent hover:cursor-pointer"
               >
-                Skill Sphere
+                Smart Track Manager
               </h1>
             </div>
             <div className="hidden md:block ml-10">

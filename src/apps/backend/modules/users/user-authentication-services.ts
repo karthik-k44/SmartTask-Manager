@@ -52,6 +52,7 @@ export class UserAuthenticationServices {
     return {
       _id: String(user._id),
       authToken: token,
+      role: user.role as UserRole,
     }
   }
 

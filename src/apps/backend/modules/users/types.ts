@@ -26,4 +26,5 @@ export type LoginParams = {
 export type LoginResponse = {
   authToken: string;
   _id: string;
+  role?: UserRole;
 };

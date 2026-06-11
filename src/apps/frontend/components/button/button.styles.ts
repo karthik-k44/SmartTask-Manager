@@ -132,15 +132,16 @@ const styles = {
         items-center
         justify-center
         py-2
-        md:py-3
-        px-4
-        rounded-lg
+        md:py-2
+        px-3
+        rounded-xl
         text-white
         transition
-        size-fit
+        w-full
+        outline-none
       `,
-      disableState: 'cursor-not-allowed bg-red-200',
-      enableState: 'hover:bg-red-900 cursor-pointer bg-red-500 active:bg-red-700',
+      disableState: 'cursor-not-allowed bg-red-200 border border-red-200',
+      enableState: 'hover:bg-red-900 cursor-pointer bg-red-500 active:bg-red-700 border border-red-500',
     },
     miniDelete: {
       base: `

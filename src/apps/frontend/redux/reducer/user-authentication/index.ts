@@ -84,7 +84,7 @@ const  authSlice = createSlice({
 
     builder.addCase(GetUserById.fulfilled, (state, action) => {
       state.getUserByIdLoading = false;
-      state.getUserByIdSuccess = action.payload;
+      state.getUserByIdData = action.payload;
     })
 
     builder.addCase(GetUserById.rejected, (state, action) => {
