@@ -137,5 +137,20 @@ export class UserAuthenticationController {
         error: (error as Error).message,
       });
     }
-  }
+  };
+
+  public static HealthCheck = async (_req: Request, res: Response) => {
+    try {
+      return res.status(200).json({
+        success: true,
+        message: "ok",
+      });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Internal server error",
+        error: (error as Error).message,
+      });
+    }
+  };
 }
