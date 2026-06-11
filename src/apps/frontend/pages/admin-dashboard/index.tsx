@@ -31,7 +31,7 @@ const AdminDashboard = () => {
         setIsActiveNavItem={handleNavChange}
         isActiveNavItem={isActiveNavItem}
       />
-      <div className="pt-20 pb-60  px-4 md:pb-20 md:px-6 lg:px-8">
+      <div className="pt-24 pb-36 px-4 md:pt-28 md:pb-24 md:px-6 lg:px-8">
         {isActiveNavItem === NavbarItemsEnum.USERS && <Users />}
         {isActiveNavItem === NavbarItemsEnum.TASKS_OVERVIEW && <TasksOverview/>}
       </div>

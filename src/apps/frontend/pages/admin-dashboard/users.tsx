@@ -26,8 +26,8 @@ const Users = () => {
       return;
     }
     try {
-      const message = await dispatch(DeleteUserByAdmin(deletionId)).unwrap();
-      toast.success(message || 'User deleted successfully');
+      await dispatch(DeleteUserByAdmin(deletionId)).unwrap();
+      toast.success('User deleted successfully');
       setDeletionId('');
       await dispatch(GetAllUsers());
     } catch (error: unknown) {

@@ -15,7 +15,6 @@ export type {
   CreateUserTaskParams,
   UpdateUserTaskParams,
   UserTaskResponse,
-  TaskStatus
 } from "./user-tasks";
 
 export  {

@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/', AuthMiddleware, UserTaskController.createUserTask);
 router.delete('/:id', AuthMiddleware, UserTaskController.deleteUserTask);
-router.put('/:id', AuthMiddleware, UserTaskController.updateUserTask);
+router.patch('/:id', AuthMiddleware, UserTaskController.updateUserTask);
 router.get('/', AuthMiddleware, UserTaskController.getUserTasks);
 router.get('/all', AuthMiddleware, PermissionMiddleware(UserRole.ADMIN), UserTaskController.getAllTasks);
 

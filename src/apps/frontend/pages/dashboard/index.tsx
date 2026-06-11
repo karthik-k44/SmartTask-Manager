@@ -4,10 +4,10 @@ import { ProtectedNavbar } from '../../constants/navbar';
 import { useEffect, useState } from 'react';
 import { NavbarItemsEnum, NavType } from '../../types/navbar';
 import { ROUTES } from '../../routes/types';
-import Home from './home';
 import Tasks from './tasks';
 import { useAppDispatch } from '../../redux/hook';
 import { GetUserById } from '../../redux/action';
+import UserPage from './user';
 
 const PortalPage = () => {
   const navigate = useNavigate();
@@ -40,8 +40,8 @@ const PortalPage = () => {
         isActiveNavItem={isActiveNavItem}
       />
 
-      <div className="py-20">
-        {isActiveNavItem === NavbarItemsEnum.HOME && <Home />}
+      <div className="pt-24 pb-36 px-4 md:pt-28 md:pb-24 md:px-6 lg:px-8">
+        {isActiveNavItem === NavbarItemsEnum.USERS && <UserPage />}
         {isActiveNavItem === NavbarItemsEnum.TASKS && <Tasks />}
       </div>
     </>

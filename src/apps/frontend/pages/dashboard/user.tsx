@@ -1,10 +1,10 @@
 import { useAppSelector } from "../../redux/hook";
 
-const Home = () => {
+const UserPage = () => {
   const getUserByIdData = useAppSelector((state) => state.authUser.getUserByIdData);
 
   return (
-    <div className=" m-6 rounded-3xl bg-white p-6 shadow-sm shadow-slate-200/40">
+    <div className="rounded-3xl bg-white shadow-sm shadow-slate-200/40">
       {!getUserByIdData?._id ? (
         <p className="text-sm text-slate-500">Loading user information...</p>
       ) : (
@@ -42,4 +42,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default UserPage;

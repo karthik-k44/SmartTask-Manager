@@ -5,10 +5,9 @@ import { LogIn, LogOut, Menu, X } from "lucide-react";
 import Text from "../typography/text";
 import Button from "../button";
 import type {
-  NavType,
    NavbarItem,
-   NavbarItemsEnum,
 } from "../../types";
+import type { NavbarItemsEnum, NavType } from "../../types/navbar";
 
 interface NavbarProps {
   navType: NavType;

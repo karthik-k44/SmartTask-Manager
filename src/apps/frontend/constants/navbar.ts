@@ -7,8 +7,8 @@ export const ProtectedNavbar : NavbarItem[] = [
         value: NavbarItemsEnum.TASKS
     },
     {
-        label: 'Home',
-        value: NavbarItemsEnum.HOME 
+        label: 'User',
+        value: NavbarItemsEnum.USERS 
     },
 ]
 

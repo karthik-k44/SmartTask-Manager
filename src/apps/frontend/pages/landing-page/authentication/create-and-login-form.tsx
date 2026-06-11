@@ -124,7 +124,7 @@ const CreateAndLoginForm: React.FC<CreateAndLoginFormProps> = ({ isOpen, setIsOp
                   : AuthType.SIGN_UP,
               )
             }
-            className="text-primary-600 hover:text-primary-700 hover:underline"
+            className="text-primary-600 hover:text-primary-700 hover:underline cursor-pointer"
           >
             {authType === AuthType.SIGN_UP ? "Login" : "Sign Up"}
           </button>

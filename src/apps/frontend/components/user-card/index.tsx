@@ -16,7 +16,7 @@ const UserCards: React.FC<UserCardsProps> = ({ user, setIsOpen, setDeletionId })
     <article
       className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm shadow-slate-200/30"
     >
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+      <div className="flex gap-4 flex-row justify-between">
         <div>
           <p className="text-sm font-medium uppercase tracking-[0.16em] text-slate-500">
             {user.role}
@@ -27,12 +27,12 @@ const UserCards: React.FC<UserCardsProps> = ({ user, setIsOpen, setDeletionId })
           <p className="mt-2 text-sm text-slate-600">{user.email}</p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-start gap-3">
           <button
             type="button"
             onClick={handleDelete}
             aria-label="Delete user"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-rose-200 bg-rose-50 text-rose-600 transition hover:bg-rose-100 focus:outline-none focus:ring-2 "
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-rose-200 bg-rose-50 text-rose-600 transition hover:bg-rose-100 focus:outline-none focus:ring-2 cursor-pointer"
           >
             <Trash2 className="h-5 w-5" />
           </button>

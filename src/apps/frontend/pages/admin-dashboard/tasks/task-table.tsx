@@ -1,5 +1,6 @@
 import React from 'react'
-import type { TaskStatus, User, UserTaskResponse } from '../../../types'
+import type { User, UserTaskResponse } from '../../../types'
+import type { TaskStatus } from '../../../types/user-tasks'
 
 interface TaskTableProps {
   tasks: UserTaskResponse[]
