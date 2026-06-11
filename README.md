@@ -2,6 +2,8 @@
 
 A robust, full-stack task management application with **Role-Based Access Control (RBAC)**. Built with React, TypeScript, Tailwind CSS, Redux Toolkit, and Node.js.
 
+demo link : https://smarttask-manager-7aef.onrender.com/
+
 ## 📖 Overview
 
 Smart Task Manager empowers teams and individuals to track tasks seamlessly. It features a secure, role-based architecture:
@@ -107,7 +109,3 @@ Contributions, issues, and feature requests are always welcome!
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
 4. Push to the branch (`git push origin feature/AmazingFeature`).
 5. Open a Pull Request.
-
-## 📝 License
-
-Distributed under the MIT License.
