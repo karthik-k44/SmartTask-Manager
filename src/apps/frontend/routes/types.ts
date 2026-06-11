@@ -1,4 +1,5 @@
 export enum  ROUTES {
   LANDING = '/',
-  PORTAL='/portal',
+  PORTAL = '/portal',
+  ADMIN_DASHBOARD = '/admin',
 }

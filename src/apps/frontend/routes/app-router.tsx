@@ -4,8 +4,8 @@ import { ROUTES } from "./types"
 import LandingPage from "../pages/landing-page";
 import ProtectedRoute from "./protected-routes";
 import PortalPage from "../pages/dashboard";
-
-
+import AdminDashboard from "../pages/admin-dashboard";
+import AdminRoute from "./admin-route";
 
 const  AppRouter = () =>{
   return (
@@ -16,6 +16,10 @@ const  AppRouter = () =>{
 
       <Route element={<ProtectedRoute />}>
         <Route path={ROUTES.PORTAL} element={<PortalPage />} />
+
+        <Route element={<AdminRoute />}>
+          <Route path={ROUTES.ADMIN_DASHBOARD} element={<AdminDashboard />} />
+        </Route>
       </Route>
     </Routes>
   );

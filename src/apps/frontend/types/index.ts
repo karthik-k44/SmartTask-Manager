@@ -9,7 +9,6 @@ export type {
   LoginParams,
   LoginResponse,
   ApiResponse,
-  UserRole
 } from "./user-authentication";
 
 export type {

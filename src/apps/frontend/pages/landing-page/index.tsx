@@ -8,6 +8,8 @@ import {
 import Button from "../../components/button";
 import Navbar from "../../components/navbar";
 import { ROUTES } from "../../routes/types";
+import { useState } from "react";
+import CreateAndLoginForm from "./authentication/create-and-login-form";
 
 const LandingPage = () => {
   const navItems = [
@@ -17,20 +19,15 @@ const LandingPage = () => {
     { value: "how-it-works", label: "How it works" },
   ];
 
-  // Keeping compatibility with existing Navbar contract without importing extra enums.
-  // We pass navType only as a string-like value (Navbar checks for NavType.PUBLIC).
-  // If your NavType enum exists, adjust navType below.
-  const navType: any = "PUBLIC";
+   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
-  const handleLoginClick = () => {
-    window.location.href = "#";
-  };
+  const navType: any = "PUBLIC";
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white text-gray-900">
       <Navbar
         navType={navType}
-        onLoginClick={handleLoginClick}
+        onLoginClick={() => setIsAuthModalOpen(true)}
         navbarItems={navItems as any}
         isActiveNavItem={undefined}
         setIsActiveNavItem={undefined}
@@ -409,6 +406,10 @@ const LandingPage = () => {
           </div>
         </div>
       </footer>
+      <CreateAndLoginForm
+        isOpen={isAuthModalOpen}
+        setIsOpen={setIsAuthModalOpen}
+      />
     </div>
   );
 };
