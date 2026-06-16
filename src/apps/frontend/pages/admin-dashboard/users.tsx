@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { DeleteUserByAdmin, GetAllUsers, GetUserById, UpdateUserStatus } from "../../redux/action";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import UserCards from "../../components/user-card";
-import { DeletionPopup, Spinner } from "../../components";
+import { DeletionPopup } from "../../components";
 import toast from "react-hot-toast";
 import type { UserStatus } from "../../types/user-authentication";
 
 const Users = () => {
   const dispatch = useAppDispatch();
-  const { getAllUsersSuccess, getAllUsersLoading, getUserByIdData } = useAppSelector((state) => state.authUser);
+  const { getAllUsersSuccess, getUserByIdData } = useAppSelector((state) => state.authUser);
 
   const [isOpen, setIsOpen] = useState(false);
   const [deletionId, setDeletionId] = useState('');
@@ -55,14 +55,6 @@ const Users = () => {
       toast.error(errorMessage);
     }
   };
-
-  if (getAllUsersLoading) {
-    return (
-      <div className="flex h-[50vh] items-center justify-center">
-        <Spinner />
-      </div>
-    );
-  }
 
   return (
     <div className="">
